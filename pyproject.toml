@@ -34,6 +34,16 @@ Source = "https://github.com/RazCrimson/starlette-gzip-request"
 [tool.hatch.version]
 path = "src/starlette_gzip_request/__init__.py"
 
+[tool.hatch.envs.default]
+installer = "uv"
+
+[tool.hatch.envs.hatch-test]
+installer = "uv"
+extra-dependencies = [
+  "pytest-trio",
+  "httpx",
+]
+
 [tool.hatch.envs.types]
 extra-dependencies = [
     "mypy>=1.0.0",
