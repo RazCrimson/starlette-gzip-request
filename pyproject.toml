@@ -51,6 +51,12 @@ extra-dependencies = [
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/starlette_gzip_request tests}"
 
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
 [tool.coverage.run]
 source_pkgs = ["starlette_gzip_request", "tests"]
 branch = true
@@ -65,6 +71,7 @@ tests = ["tests", "*/starlette-gzip-request/tests"]
 
 [tool.coverage.report]
 exclude_lines = [
+    "pragma: no cover",
     "no cov",
     "if __name__ == .__main__.:",
     "if TYPE_CHECKING:",

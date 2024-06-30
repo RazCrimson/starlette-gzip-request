@@ -19,7 +19,7 @@ class GZipRequestMiddleware:
         if scope["type"] == "http":
             headers = Headers(scope=scope)
 
-            if "gzip" == headers.get("Content-Encoding"):
+            if headers.get("Content-Encoding") == "gzip":
                 # Decompress only if 'gzip' compression is applied
                 reader = GZipRequestReader(self.app)
                 await reader(scope, receive, send)
@@ -71,4 +71,4 @@ class GZipRequestReader:
 
 
 async def unattached_receive() -> typing.NoReturn:
-    raise RuntimeError("receive awaitable not set")  # pragma: no cover
+    raise RuntimeError("awaitable not set")  # noqa: EM101, TRY003 # pragma: no cover
