@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "starlette-gzip-request"
+dynamic = ["version"]
+description = 'A custom ASGI middleware for starlette to handle GZipped HTTP Requests'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "BSD-3-Clause"
+keywords = []
+authors = [
+    { name = "Bharath Vignesh J K", email = "52282402+RazCrimson@users.noreply.github.com" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = ["starlette"]
+
+[project.urls]
+Documentation = "https://github.com/RazCrimson/starlette-gzip-request#readme"
+Issues = "https://github.com/RazCrimson/starlette-gzip-request/issues"
+Source = "https://github.com/RazCrimson/starlette-gzip-request"
+
+[tool.hatch.version]
+path = "src/starlette_gzip_request/__init__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+    "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/starlette_gzip_request tests}"
+
+[tool.coverage.run]
+source_pkgs = ["starlette_gzip_request", "tests"]
+branch = true
+parallel = true
+omit = [
+    "src/starlette_gzip_request/__init__.py",
+]
+
+[tool.coverage.paths]
+starlette_gzip_request = ["src/starlette_gzip_request", "*/starlette-gzip-request/src/starlette_gzip_request"]
+tests = ["tests", "*/starlette-gzip-request/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "no cov",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
